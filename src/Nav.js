@@ -1,4 +1,6 @@
 import { NavLink } from "react-router-dom";
+import './Nav.css'
+
 function Nav({ dogList }) {
   return (
     <div className="NavBar">
