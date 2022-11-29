@@ -1,22 +1,14 @@
-
-
-function DogList({dogList}) {
-
+import Dog from './Dog';
+function DogList({ dogList }) {
   return (
-
-    <div className="DogList">
-
-      {dogList.map(dog => {
-        return (
-          <div>
-            <p>{dog.name}</p>
-            <img src={`${dog}.src`} alt="dogs" ></img>
-          </div>
-        );
-      })}
-
-    </div>
+    <ul>
+      {dogList.map(dog => (
+         <li key={dog.name}>
+        <Dog dog={dog} />
+        </li>
+      ))}
+    </ul>
   );
 }
 
-export default DogList
+export default DogList;
