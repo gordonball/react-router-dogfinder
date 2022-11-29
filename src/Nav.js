@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 
-function Nav({ names }) {
+function Nav({ dogList }) {
 
   return (
     <div>
-      {names.map(dog =>
+      {dogList.map(dog =>
         <Link to={`/dogs/${dog}`} />
       )}
     </div>

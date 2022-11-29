@@ -1,16 +1,12 @@
-import axios from "axios";
 
-function DogList() {
 
-  async function getDogs() {
-    await axios.get("localhost:5001/dogs");
-  }
-
-  const dogs = getDogs();
+function DogList({dogList}) {
 
   return (
+
     <div className="DogList">
-      {dogs.map(dog => {
+
+      {dogList.map(dog => {
         return (
           <div>
             <p>{dog.name}</p>
@@ -18,6 +14,7 @@ function DogList() {
           </div>
         );
       })}
+
     </div>
   );
 }
