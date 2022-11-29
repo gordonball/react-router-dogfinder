@@ -1,40 +1,41 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import DogList from './DogList';
-import DogDetails from './DogDetails';
+import FilterDog from './FilterDog'
 import axios from "axios";
 import Nav from './Nav';
 import './App.css';
-
 
 
 function App() {
   const [dogList, setDogList] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  console.log("App", dogList, loading);
-
+  /**Function to make async calls*/
   async function getDogs() {
     const result = await axios.get("http://localhost:5001/dogs");
     setDogList(result.data);
   }
-
+  /** Check to see if the page is loading or not*/
   if (loading) {
     getDogs();
-    setLoading(load => !load);
+    setLoading(!loading);
   }
 
   return (
     <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Nav dogList= { dogList } />}  />
-          <Route path="/dogs" element={<DogList dogList={ dogList } />}  />
-          <Route path="/dogs/:name" element={ <DogDetails /> }  />
-          <Route path="*" element={ <DogList/> } />
-        </Routes>
-      </BrowserRouter>
 
+      {loading && <h1> Loading... </h1>}
+      {!loading &&
+        <BrowserRouter>
+          <Nav dogList={dogList.map(dog => dog.name)} />
+          <Routes>
+            <Route path="/" element={<DogList dogList={dogList} />} />
+            <Route path="/dogs/:name" element={<FilterDog dogList={dogList} />} />
+            <Route path="*" element={<DogList dogList={dogList} />} />
+          </Routes>
+        </BrowserRouter>
+      }
     </div>
   );
 }

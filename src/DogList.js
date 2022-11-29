@@ -1,5 +1,6 @@
 import Dog from './Dog';
 function DogList({ dogList }) {
+
   return (
     <ul>
       {dogList.map(dog => (

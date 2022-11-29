@@ -1,18 +1,14 @@
+import { Link} from "react-router-dom";
 
-function DogDetails({dog}) {
-
+function DogDetails({ dog }) {
   return (
-    <div>
-      <p>Name: {dog.name}</p>
-      <p>Age: {dog.age}</p>
-      <ul>
-        {(dog.facts).map(fact =>
-          <li>{fact}</li>
-        )}
-      </ul>
-
+    <div className="DogDetails">
+      <p>Name: {dog.name} Age: {dog.age}</p>
+      <img src={`/${dog.src}.jpg`} alt={dog.name} />
+      {dog.facts.map((fact, idx) => <p key={idx}>{fact}</p>)}
+      <Link to="/dogs">Let's go back to all the good boys</Link>
     </div>
-  )
+  );
 }
 
-export default DogDetails
+export default DogDetails;

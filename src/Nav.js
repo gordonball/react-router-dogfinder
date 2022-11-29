@@ -1,14 +1,18 @@
-import { Link } from "react-router-dom";
-
+import { NavLink } from "react-router-dom";
 function Nav({ dogList }) {
-
   return (
-    <div>
-      {dogList.map(dog =>
-        <Link to={`/dogs/${dog}`} />
-      )}
+    <div className="NavBar">
+
+      {dogList.map(
+        dog =>
+          <NavLink
+            key={dog}
+            to={`/dogs/${dog.toLowerCase()}`}
+          >{dog}
+          </NavLink>)}
+
     </div>
-  )
+  );
 }
 
 export default Nav
